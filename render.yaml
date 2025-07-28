@@ -6,22 +6,27 @@ services:
     buildCommand: "cd backend && pip install -r requirements.txt"
     startCommand: "cd backend && uvicorn server:app --host 0.0.0.0 --port $PORT"
     envVars:
-      - key: MONGO_URL
-        sync: false
-      - key: DB_NAME
-        value: rapidmandados_mexico
+      # - key: MONGO_URL # <--- ¡Eliminar esta línea!
+      #   sync: false
+      # - key: DB_NAME # <--- ¡Eliminar esta línea!
+      #   value: rapidmandados_mexico
       - key: SECRET_KEY
         generateValue: true
       - key: PYTHON_VERSION
         value: "3.11"
+      # --- ¡Nueva configuración de DB aquí! ---
+      - key: DATABASE_URL # <--- ¡Nueva línea!
+        fromDatabase:
+          name: rapidmandados-db-mx # <--- ¡El nombre de tu base de datos de Render!
+      # ------------------------------------
     
   # Frontend Web Service  
   - type: web
     name: rapidmandados-frontend-mx
     env: node
-    rootDir: frontend # <--- ¡Aquí está la adición clave!
-    buildCommand: "yarn install && yarn build" # <--- Eliminado 'cd frontend &&'
-    startCommand: "npx serve -s build -p $PORT" # <--- Eliminado 'cd frontend &&'
+    rootDir: frontend
+    buildCommand: "yarn install && yarn build"
+    startCommand: "npx serve -s build -p $PORT"
     envVars:
       - key: REACT_APP_BACKEND_URL
         fromService:
