@@ -1,0 +1,34 @@
+{
+  "name": "rapidmandados-delivery",
+  "version": "1.0.0",
+  "description": "Complete delivery application with commission system for Leonardo Luna",
+  "main": "index.js",
+  "scripts": {
+    "dev": "echo 'Use supervisor for development'",
+    "build": "cd frontend && yarn install && yarn build",
+    "start": "cd frontend && yarn start",
+    "backend": "cd backend && uvicorn server:app --host 0.0.0.0 --port 8001",
+    "install-deps": "cd backend && pip install -r requirements.txt && cd ../frontend && yarn install"
+  },
+  "keywords": [
+    "delivery",
+    "mandados",
+    "rapidmandados",
+    "fastapi",
+    "react",
+    "mongodb",
+    "commission",
+    "leonardo-luna"
+  ],
+  "author": "Leonardo Luna <leonardo.luna@rapidmandados.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonardo-luna/rapidmandados.git"
+  },
+  "homepage": "https://rapidmandados.com"
+}
