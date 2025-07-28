@@ -19,8 +19,9 @@ services:
   - type: web
     name: rapidmandados-frontend-mx
     env: node
-    buildCommand: "cd frontend && yarn install && yarn build"
-    startCommand: "cd frontend && npx serve -s build -p $PORT"
+    rootDir: frontend # <--- ¡Aquí está la adición clave!
+    buildCommand: "yarn install && yarn build" # <--- Eliminado 'cd frontend &&'
+    startCommand: "npx serve -s build -p $PORT" # <--- Eliminado 'cd frontend &&'
     envVars:
       - key: REACT_APP_BACKEND_URL
         fromService:
